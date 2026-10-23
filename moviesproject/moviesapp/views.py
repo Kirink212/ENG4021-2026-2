@@ -56,5 +56,5 @@ def chat(request):
 
 def home2(request):
     movies = Movie.objects.all()
-    return render(request, "index.html", {"movies": movies})
+    return render(request, "home.html", {"movies": movies})
 
