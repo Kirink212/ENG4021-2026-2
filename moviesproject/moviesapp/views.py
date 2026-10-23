@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Movie
 from django.http import JsonResponse
 import requests
 import json
@@ -51,3 +52,9 @@ def home(request):
 
 def chat(request):
     return render(request, "chat.html")
+
+
+def home2(request):
+    movies = Movie.objects.all()
+    return render(request, "index.html", {"movies": movies})
+
