@@ -1,9 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Movie
+from .forms import MovieForm
 from django.http import JsonResponse
 import requests
 import json
 import os
+
+def home2(request):
+    movies = Movie.objects.all()
+    return render(request, "home.html", {"movies": movies})
+
+
+def movie_create(request):
+    if request.method == "POST":
+        form = MovieForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("catalog")
+    else:
+        form = MovieForm()
+
+    return render(request, "movie_form.html", {"form": form, "title": "Novo filme"})
+
 
 GEMINI_API_KEY = ""
 GEMINI_MODEL = "gemini-2.5-flash"
@@ -52,9 +70,4 @@ def home(request):
 
 def chat(request):
     return render(request, "chat.html")
-
-
-def home2(request):
-    movies = Movie.objects.all()
-    return render(request, "home.html", {"movies": movies})
 

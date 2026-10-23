@@ -21,7 +21,7 @@ from moviesapp.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
-    path('home/', home2),
-    path('chat/', chat),
+    path('home/', home2, name='catalog'),
+    path('movies/new/', movie_create, name='movie_create'),    path('chat/', chat),
     path('bot/', call_bot)
 ]

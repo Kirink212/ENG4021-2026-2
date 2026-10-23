@@ -13,6 +13,10 @@
         <span>Lumière</span>
     </div>
 
+    <div class="toolbar">
+        <a href="{% url 'movie_create' %}" class="btn btn-primary">+ Novo filme</a>
+    </div>
+
     <div class="catalog">
         {% for movie in movies %}
         <div class="card" style="width: 18rem;">
